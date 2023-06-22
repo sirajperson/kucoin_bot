@@ -163,6 +163,3 @@ class KucoinAccount(BaseAccount):
         if "position" in data:
             return data["position"]
         return None
-
-    def dummyFunc(self):
-        pass
