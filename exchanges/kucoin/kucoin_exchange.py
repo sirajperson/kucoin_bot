@@ -377,5 +377,3 @@ class KucoinExchange(BaseExchange):
         if self._ws_client:
             for topic in self._websocket_topics:
                 self._ws_client.subscribe(topic)
-    def dummyFunc(self):
-        pass
