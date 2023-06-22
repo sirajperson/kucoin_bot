@@ -40,7 +40,7 @@ class KucoinExchange(BaseExchange):
         self._market = KucoinMarket(config, self._get_data, self._update_websocket_data_store)
         self._account = KucoinAccount(config, self._get_data, self._update_websocket_data_store)
         self._trade = KucoinTrade(config, self._get_data, self._update_websocket_data_store)
-        self._ta = KCTa(config, self._get_data)
+        self._ta = KCTa(config, self.get_snapshot)
         self._time_delta = config["candle_length"]
         self._token = WsToken(
             key=config["api_key"],
@@ -104,6 +104,9 @@ class KucoinExchange(BaseExchange):
 
     def _get_data(self):
         return self._kc_cache
+
+    def get_snapshot(self):
+        return copy.deepcopy(self._kc_cache)
 
     def ws_is_connected(self):
         return self._ws_client is not None
@@ -311,9 +314,6 @@ class KucoinExchange(BaseExchange):
             else:
                 self._kc_cache["orders"][oid].update(order)
         return
-
-    def get_snapshot(self):
-        self._get_data()
 
     def update_klines(self, message=None):
         if "klines" not in self._kc_cache:

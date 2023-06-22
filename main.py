@@ -118,7 +118,7 @@ class KucoinBot:
                     # Sleep until the start of the next minute
                     now = datetime.datetime.now()
                     sleep_seconds = 60 - now.second - now.microsecond / 1000000
-                    await asyncio.sleep(sleep_seconds + 1)
+                    await asyncio.sleep(sleep_seconds)
 
                     self._exchange.market().get_aggregated_orderv3()
 
