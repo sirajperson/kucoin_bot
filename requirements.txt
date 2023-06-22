@@ -1,0 +1,7 @@
+git+https://github.com/Kucoin/kucoin-python-sdk.git@master#egg=kucoin-python
+pandas
+PyYAML==6.0
+pandas_ta
+# ta==0.10.2
+openpyxl
+tabulate
